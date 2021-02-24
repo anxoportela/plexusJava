@@ -1,5 +1,7 @@
 package com.plexus;
 
+import java.util.Objects;
+
 public class Cliente {
 
     private int idCliente;
@@ -54,6 +56,19 @@ public class Cliente {
 
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return getIdCliente() == cliente.getIdCliente() && getEdad() == cliente.getEdad() && Objects.equals(getDni(), cliente.getDni()) && Objects.equals(getNombre(), cliente.getNombre()) && Objects.equals(getApellidos(), cliente.getApellidos());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIdCliente(), getDni(), getNombre(), getApellidos(), getEdad());
     }
 
     @Override

@@ -1,15 +1,17 @@
 package com.plexus;
 
+import java.util.Objects;
+
 public class Vehiculo {
 
     private int idVehiculo;
     private String matricula;
     private Marcas marcaVehiculo;
     private String modelo;
-    private String ano;
+    private int ano;
     private String color;
 
-    public Vehiculo(int idVehiculo, String matricula, Marcas marcaVehiculo, String modelo, String ano, String color) {
+    public Vehiculo(int idVehiculo, String matricula, Marcas marcaVehiculo, String modelo, int ano, String color) {
         this.idVehiculo = idVehiculo;
         this.matricula = matricula;
         this.marcaVehiculo = marcaVehiculo;
@@ -50,11 +52,11 @@ public class Vehiculo {
         this.modelo = modelo;
     }
 
-    public String getAno() {
+    public int getAno() {
         return ano;
     }
 
-    public void setAno(String ano) {
+    public void setAno(int ano) {
         this.ano = ano;
     }
 
@@ -64,6 +66,19 @@ public class Vehiculo {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vehiculo vehiculo = (Vehiculo) o;
+        return getIdVehiculo() == vehiculo.getIdVehiculo() && getAno() == vehiculo.getAno() && Objects.equals(getMatricula(), vehiculo.getMatricula()) && getMarcaVehiculo() == vehiculo.getMarcaVehiculo() && Objects.equals(getModelo(), vehiculo.getModelo()) && Objects.equals(getColor(), vehiculo.getColor());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIdVehiculo(), getMatricula(), getMarcaVehiculo(), getModelo(), getAno(), getColor());
     }
 
     @Override
